@@ -55,6 +55,26 @@
                             para poder considerarlo en el proceso de selección. </p>
 
                         <div class="group-itens">
+                            <!-- Grupo: Nombre -->
+                            <div class="formulario__grupo" id="grupo__nombre">
+                                <label for="nombre" class="formulario__label">Nombres</label>
+                                <input type="text" class="formulario__input" name="nombre" id="nombre" placeholder="">
+                                
+                            </div>
+
+                            <!-- Grupo: Apellido paterno-->
+                            <div class="formulario__grupo" id="grupo__apellidoPaterno">
+                                <label for="apellidoPaterno" class="formulario__label">Apellido Paterno</label>
+                                <input type="text" class="formulario__input" name="apellidoPaterno" id="apellidoPaterno" placeholder="">
+                            </div>
+
+                            <!-- Grupo: Apellido materno -->
+                            <div class="formulario__grupo" id="grupo__apellidoMaterno">
+                                <label for="apellidoMaterno" class="formulario__label">Apellido Materno</label>
+                                <input type="text" class="formulario__input" name="apellidoMaterno" id="apellidoMaterno" placeholder="">
+                                
+                            </div>
+
                             <!-- Grupo: Correo Electronico -->
                             <div class="formulario__grupo" id="grupo__correo">
                                 <label for="correo" class="formulario__label">Correo Electrónico</label>
@@ -487,7 +507,30 @@
     </div>
     <script src="app.js"></script>
     <script src="formulario.js"></script>
+    
     <script src="https://kit.fontawesome.com/2c36e9b7b1.js" crossorigin="anonymous"></script>
 </body>
+
+<script>
+    $('#buscar').click(function(){
+        dni=$('#documento').val();
+        $.ajax({
+           url:'apiReniec.php',
+           type:'post',
+           data: 'dni='+dni,
+           dataType:'json',
+           success:function(r){
+            if(r.numeroDocumento==dni){
+                $('#apellidoPaterno').val(r.apellidoPaterno);
+                $('#apellidoMaterno').val(r.apellidoMaterno);
+                $('#nombre').val(r.nombres);
+            }else{
+                alert(r.error);
+            }
+            console.log(r)
+           }
+        });
+    });
+</script>
 
 </html>
