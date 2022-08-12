@@ -155,10 +155,8 @@ const calcIMC = () => {
             classification = 'Obesidad Morbida'
         }
 
-        imc.innerHTML = `${imc}`
-        detalleIMC.innerHTML = `${classification}`
-
-        console.log(imc.innerHTML);
+        imc.innerHTML = `${imc}`;
+        detalleIMC.innerHTML = `${classification}`;
 
     }
 }
