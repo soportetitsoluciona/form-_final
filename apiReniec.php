@@ -2,7 +2,7 @@
 // Datos
 $token = 'apis-token-1.aTSI1U7KEuT-6bbbCguH-4Y8TI6KS73N';
 $dni = $_REQUEST['dni'];
-
+//$dni = '73743668';
 // Iniciar llamada a API
 $curl = curl_init();
 

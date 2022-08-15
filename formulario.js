@@ -10,7 +10,7 @@ const expresiones = {
     distrito: /^[a-zA-ZÀ-ÿ]+$/,
     provincia: /^[a-zA-ZÀ-ÿ]+$/,
     peso: /^[0-9]+.[0-9]$/,
-    estatura: /^[0-9]+.[0-9]$/,
+    estatura: /^[0-9]+.[0-9][0-9]$/,
     tallazapatos: /^[0-9]{2}$/
         //-------------------------------
         //letras: /^[a-zA-Z]{3,20}$/, // Letras, numeros, guion y guion_bajo
@@ -116,24 +116,28 @@ const detalleIMC = document.querySelector('#detalleIMC')
 const estatura = document.querySelector('#estatura')
 const peso = document.querySelector('#peso')
 
+console.log(estatura);
+console.log(peso);
+
 const calcIMC = () => {
 
     if (estatura.value !== '' && peso.value !== '') {
-        const imc = (peso.value / (estatura.value * estatura.value)).toFixed(2)
-        let classification = ''
+        const imc = (peso.value / (estatura.value * estatura.value)).toFixed(2);
+        console.log("imc");
+        let classification = '';
 
         if (imc < 18.5) {
-            classification = 'Bajo Peso'
+            classification = 'Bajo Peso';
         } else if (imc > 18.5 && imc < 24.9) {
-            classification = 'Peso normal'
+            classification = 'Peso normal';
         } else if (imc > 25 && imc < 29.9) {
-            classification = 'Sobre Peso'
+            classification = 'Sobre Peso';
         } else if (imc > 30 && imc < 34.9) {
-            classification = 'Obesidad Leve'
+            classification = 'Obesidad Leve';
         } else if (imc > 35 && imc < 39.9) {
-            classification = 'Obesidad Leve'
+            classification = 'Obesidad Leve';
         } else {
-            classification = 'Obesidad Morbida'
+            classification = 'Obesidad Morbida';
         }
 
         imc.innerHTML = `${imc}`;

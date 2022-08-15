@@ -14,7 +14,11 @@
     <link rel="stylesheet" href="estilos.css">
     <script src="https://cdn.jsdelivr.net/npm/signature_pad@2.3.2/dist/signature_pad.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/signature_pad@2.3.2/dist/signature_pad.min.js"></script>
-    <title>Slider Nav</title>
+
+    <!-- Libreria Jquery para funcionamiento del Api Reniec-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <title>T-Soluciona</title>
+
 </head>
 
 <body>
@@ -32,10 +36,10 @@
         </div>
 
         <nav id="menu">
-            <a href="#1">Sección 1</a>
-            <a href="#2">Sección 2</a>
-            <a href="#3">Sección 3</a>
-            <a href="#4">Sección 4</a>
+            <a href="#1">Datos Personales</a>
+            <a href="#2">Ficha de Salud</a>
+            <a href="#3">Ficha de Trabajo</a>
+            <a href="#4">Concentimiento de Datos</a>
             <span class="indicador" id="indicador"></span>
         </nav>
         
@@ -58,20 +62,20 @@
                             <!-- Grupo: Nombre -->
                             <div class="formulario__grupo" id="grupo__nombre">
                                 <label for="nombre" class="formulario__label">Nombres</label>
-                                <input type="text" class="formulario__input" name="nombre" id="nombre" placeholder="">
+                                <input type="text" class="formulario__input" name="nombre" id="nombre" placeholder="" disabled>
                                 
                             </div>
 
                             <!-- Grupo: Apellido paterno-->
                             <div class="formulario__grupo" id="grupo__apellidoPaterno">
                                 <label for="apellidoPaterno" class="formulario__label">Apellido Paterno</label>
-                                <input type="text" class="formulario__input" name="apellidoPaterno" id="apellidoPaterno" placeholder="">
+                                <input type="text" class="formulario__input" name="apellidoPaterno" id="apellidoPaterno" placeholder="" disabled>
                             </div>
 
                             <!-- Grupo: Apellido materno -->
                             <div class="formulario__grupo" id="grupo__apellidoMaterno">
                                 <label for="apellidoMaterno" class="formulario__label">Apellido Materno</label>
-                                <input type="text" class="formulario__input" name="apellidoMaterno" id="apellidoMaterno" placeholder="">
+                                <input type="text" class="formulario__input" name="apellidoMaterno" id="apellidoMaterno" placeholder="" disabled>
                                 
                             </div>
 
@@ -305,7 +309,7 @@
                             </div>
                             <!-- Grupo: Estatura -->
                             <div class="formulario__grupo" id="grupo__estatura">
-                                <label for="estatura" class="formulario__label">Estatura (M)</label>
+                                <label for="estatura" class="formulario__label">Estatura (m)</label>
                                 <div class="formulario__grupo-input">
                                     <input type="text" class="formulario__input" name="estatura" id="estatura" placeholder="Ejem: 1.68">
                                     <i class="formulario__validacion-estado fas fa-times-circle"></i>
@@ -507,30 +511,7 @@
     </div>
     <script src="app.js"></script>
     <script src="formulario.js"></script>
-    
+    <script src="consultaDni.js"></script>
     <script src="https://kit.fontawesome.com/2c36e9b7b1.js" crossorigin="anonymous"></script>
 </body>
-
-<script>
-    $('#buscar').click(function(){
-        dni=$('#documento').val();
-        $.ajax({
-           url:'apiReniec.php',
-           type:'post',
-           data: 'dni='+dni,
-           dataType:'json',
-           success:function(r){
-            if(r.numeroDocumento==dni){
-                $('#apellidoPaterno').val(r.apellidoPaterno);
-                $('#apellidoMaterno').val(r.apellidoMaterno);
-                $('#nombre').val(r.nombres);
-            }else{
-                alert(r.error);
-            }
-            console.log(r)
-           }
-        });
-    });
-</script>
-
 </html>
